@@ -1,0 +1,4 @@
+Flask>=1.0.2
+Flask-WTF>=0.14.2
+WTForms>=2.2
+redis>=2.10.6
