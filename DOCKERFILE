@@ -1,7 +1,0 @@
-FROM python:3
-
-ADD robot.py /
-
-RUN pip install requirements.txt
-
-CMD [ "python", "./robot.py" ]
