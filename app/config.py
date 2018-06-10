@@ -9,5 +9,5 @@ class Houndify():
 # has to extend object so Flask can use...not pythonic, I know :/
 class Config(object):
     TITLE = 'Your Personal Robot Assistant?'
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'uF83-9WI2-9Sp1-o39S-aQ1z'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or ''
     Houndify = Houndify()
