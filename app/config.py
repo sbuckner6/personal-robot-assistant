@@ -2,8 +2,8 @@ import os
 
 
 class Houndify():
-    CLIENT_ID = 'ITdB6ME9dOrTRQxm3xNqXA=='
-    CLIENT_KEY = 'JdPOb2p80vQPyfBC5cC3efUxgRpg_FoqWyScW3fumvSBvZP0Dk3pVc-czYuerEqoG3NLnNaTgjrccEQGnxrZIg=='
+    CLIENT_ID = ''
+    CLIENT_KEY = ''
     USER_ID = 'admin'
 
 # has to extend object so Flask can use...not pythonic, I know :/
