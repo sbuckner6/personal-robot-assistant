@@ -1,6 +1,7 @@
-from houndify import houndify
 from config import Config
-
+from houndify import houndify
+from redis import Redis
+import sys
 
 class HoundifyAccessObject:
 
@@ -12,6 +13,8 @@ class HoundifyAccessObject:
                 userID=Config.Houndify.USER_ID,
                 requestInfo={}
             )
+
+            self.redis = Redis(host='redis', port=6379, db=0)
 
     instance = None
 
@@ -26,6 +29,16 @@ class HoundifyAccessObject:
                 requestInfo={}
             )
 
-    def query(self, querytext):
-        return HoundifyAccessObject.instance.text_client.query(querytext)
+            HoundifyAccessObject.instance.redis = Redis(host='redis', port=6379, db=0)
 
+    def query(self, querytext):
+        answer = HoundifyAccessObject.instance.redis.get(querytext)
+
+        if answer is None:
+            response = HoundifyAccessObject.instance.text_client.query(querytext)
+            answer = response['AllResults'][0]['SpokenResponseLong']
+            HoundifyAccessObject.instance.redis.set(querytext, answer)
+        else:
+            answer = answer.decode('UTF-8')
+
+        return answer

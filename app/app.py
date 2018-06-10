@@ -20,12 +20,11 @@ def query():
             return render_template('query.html', title = Config.TITLE, form = form, answer = '')
         else:
             querytext = form['querytext'].data
-            response = hound.query(querytext)
-            answer = response['AllResults'][0]['SpokenResponseLong']
+            answer = hound.query(querytext)
             return render_template('query.html', title = Config.TITLE, form = form, answer = answer)
     elif request.method == 'GET':
         return render_template('query.html', title = Config.TITLE, form = form, answer = '')
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0', port=80, debug=True)
 

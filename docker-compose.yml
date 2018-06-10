@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./app
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+    ports:
+      - "5000:80"
+  redis:
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+volumes:
+  redis_data:
